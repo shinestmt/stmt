@@ -1,0 +1,13 @@
+{
+	jdbc : {
+		url : "url_content",
+		driver : "com.microsoft.driver.sqlserver.SQLServerDriver",
+		userName : "fanhang",
+		passWord : "tst22222"
+	},
+	task : {
+		start : 1,
+		end : 7,
+		interval : 1
+	}
+}
