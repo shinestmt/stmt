@@ -23,7 +23,12 @@ public class Log {
 	 * @param message
 	 */
 	public static void print(Object obj) {
-		prt.info(obj==null ? null : obj.toString());
+		try {
+			prt.info(obj.toString());
+		} catch (NullPointerException e) {
+			prt.info(null);
+		}
+		
 	}
 	
 	/**
