@@ -1,6 +1,5 @@
 package com.hanghang.codestore.jtpl;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,9 +15,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The forward compatible template engine interface,
- * replacing {@link Jtpl}.
- */
+* The forward compatible template engine interface,
+* replacing {@link Jtpl}.
+*/
 public class Template {
 
 	private Jtpl t;
@@ -30,7 +29,6 @@ public class Template {
 	public Template(String templateSource) {
 		try {
 			t = new Jtpl(new StringReader(templateSource)); 
-			System.out.println(t);
 		} catch (IOException e) {
 			throw new RuntimeException(e); // should be impossible with StringReader
 		}
@@ -49,6 +47,12 @@ public class Template {
 	
 	// proxying methods from Jtpl1
 
+	/**
+	 * 设置变量
+	 * @param varName 变量名
+	 * @param varData 变量数据
+	 * @return
+	 */
 	public Template assign(String varName, String varData) {
 		t.assign(varName, varData);
 		return this;

@@ -9,10 +9,9 @@ public class Test {
 		
 		URL url = Test.class.getResource("/sample1.jtpl");
 		System.out.println(url);
-		Template tmpl = new Template(url.getPath());
+		Template tmpl = new Template(new File(url.getPath()));
 		tmpl.assign("TITLE", "标题").assign("MESSAGE", "消息");
 		System.out.println(tmpl.out());
-		
 		
 	}
 
