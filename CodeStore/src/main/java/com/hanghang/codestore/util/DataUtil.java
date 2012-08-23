@@ -1,15 +1,28 @@
 package com.hanghang.codestore.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.MultiHashMap;
+import org.apache.commons.collections.MultiMap;
 import org.nutz.json.Json;
 
 import com.hanghang.codestore.util.print.Printer;
 
 public class DataUtil {
+	
+	public static void testname() throws Exception {
+		MultiMap map = new MultiHashMap();
+		map.put("a", new String[]{"123", "1"});
+		map.put("a", new String[]{"456", "4"});
+		System.out.println(Json.toJson(map.get("a")));
+		
+		
+		
+	}
 	
 	public static List<String[]> extendList(List<String[]> dataList, String... extendData) throws Exception {
 		if(dataList == null || dataList.isEmpty()){
@@ -51,6 +64,16 @@ public class DataUtil {
 	}
 	
 	private static Map<String, List<String[]>> toStringListMap(List<String[]> dataList) throws Exception{
+		MultiMap rsMap = new MultiHashMap();
+		for (String[] item : dataList) {
+			rsMap.put(item[0], Arrays.copyOfRange(item, 1, item.length));
+		}
+		if(rsMap.size() == 0){
+			return rsMap;
+		}
+		
+		
+		
 		int length = getLength(dataList);
 		
 		Map<String, List<String[]>> stringListMap = new HashMap<String, List<String[]>>();
@@ -58,10 +81,10 @@ public class DataUtil {
 		for (String[] item : dataList) {
 			if(stringListMap.containsKey(item[0])){
 				arrayList = stringListMap.get(item[0]);
-				arrayList.add(Lang.getArray(item, 1, length));
+				arrayList.add(Arrays.copyOfRange(item, 1, length));
 			}else{
 				arrayList = new ArrayList<String[]>();
-				arrayList.add(Lang.getArray(item, 1, length));
+				arrayList.add(Arrays.copyOfRange(item, 1, length));
 				stringListMap.put(item[0], arrayList);
 			}
 		}
@@ -81,6 +104,11 @@ public class DataUtil {
 		try {
 			List<String[]> rsList = extendList(dataList, "收入", "支出", "人数");
 			Printer.print(rsList);
+			
+			String[] array = rsList.get(0);
+			String[] newArray = Arrays.copyOfRange(array, 1, array.length-2);
+			System.out.println(Arrays.toString(newArray));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
