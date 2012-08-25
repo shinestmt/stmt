@@ -6,13 +6,15 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
+
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 public class DataSourceFactory {
 
 	private static DruidDataSource ds;
-
+	
 	/**
 	 * 私有构造方法，不允许外部实例化。
 	 */
@@ -35,6 +37,9 @@ public class DataSourceFactory {
 	 * @throws SQLException
 	 */
 	public static DataSource getDataSource() throws SQLException {
+		if(ds == null){
+			new DataSourceFactory();
+		}
 		return ds;
 	}
 

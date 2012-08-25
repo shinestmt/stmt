@@ -2,6 +2,7 @@ package com.hanghang.codestore.util.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
@@ -236,6 +237,12 @@ public class DBService {
 	 */
 	public List<Map<String, Object>> getMapList(String sql, RowProcessor convert, Object... params) throws SQLException {
 		return executor.query(sql, new MapListHandler(), params);
+	}
+	
+	public boolean execute(String sql) throws Exception{
+		this.conn = ds.getConnection();
+		Statement stmt = conn.createStatement();
+		return stmt.execute(sql);
 	}
 
 	/**
