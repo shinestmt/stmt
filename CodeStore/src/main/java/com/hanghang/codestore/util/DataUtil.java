@@ -24,6 +24,21 @@ public class DataUtil {
 		
 	}
 	
+	/**
+	 *
+源数据: 
+湖北	收入	15000	16000		dataList.add(new String[]{'湖北', '收入', '15000'});
+湖北	支出	11000	12000		dataList.add(new String[]{'湖北', '支出', '11000'});
+湖北	人数	200	210		dataList.add(new String[]{'湖北', '人数', '200'});
+湖南	收入	16000	17000		dataList.add(new String[]{'湖南', '收入', '16000'});
+湖南	支出	15000	16000		dataList.add(new String[]{'湖南', '支出', '15000'});
+湖南	人数	150	160		dataList.add(new String[]{'湖南', '人数', '150'});
+
+转换结果: 
+湖北	15000	16000	11000	12000	200	210
+湖南	16000	17000	15000	16000	150	160
+	 *
+	 */
 	public static List<String[]> extendList(List<String[]> dataList, String... extendData) throws Exception {
 		if(dataList == null || dataList.isEmpty()){
 			Lang.handException("Empty List : dataList");
