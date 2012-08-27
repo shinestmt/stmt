@@ -1,4 +1,4 @@
 stmt
 ====
 
-hanghang's codestore
+仅为本人同步代码玩, 可千万别当真
