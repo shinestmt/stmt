@@ -1,14 +1,20 @@
 
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
 body {
-	background: none repeat scroll 0 0 #222222;
-    color: #EEEEEE;
-    font-family: Arial,Verdana,Helvetica,sans-serif;
-    font-size: 100.1%;
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
+	background: #1B2024;
+	font-family: 'Abel', sans-serif;
+	font-size: 15px;
+	color: #8F8F8F;
 }
 
-/*h1, h2, h3 {
+h1, h2, h3 {
 	margin: 0;
 	padding: 0;
 	font-family: 'Abel', sans-serif;
@@ -58,71 +64,73 @@ img.aligncenter {
 hr {
 	display: none;
 }
-*/
 
-/* Headings */ 
+/** WRAPPER */
+
+#wrapper {
+}
+
+.container {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.clearfix {
+	clear: both;
+}
+
+/* Header */
+
+#header-wrapper {
+	overflow: hidden;
+	height: 157px;
+	background: #DEE3E5;
+}
 
 #header {
-	background-color: #016597;
-	width: 70%;
-	margin-top: 20px;
-	margin-left: 15%;
+	width: 1000px;
 	height: 140px;
-	border: 1px solid blue;
-	min-width: 800px;
+	margin: 0 auto;
+	padding: 0px 0px;
 }
 
-#header h3{
-	margin:  0;
-	padding: 23px 0 0 20px;
+/* Logo */
+
+#logo {
+	float: left;
+	width: 300px;
+	height: 80px;
+	margin: 0px;
+	padding: 0px;
 }
 
-#header h3 a{
-	font-weight:100;
-	color: #ffffff;
+#logo h1 {
+	padding: 30px 0px 0px 0px;
+	background: url(images/img02.png) no-repeat left 50%;
+	text-transform: lowercase;
+	letter-spacing: -2px;
+	font-size: 3.6em;
+}
+
+#logo h1 a {
 	text-decoration: none;
-	font-size: 220%;
-	line-height:28px;
-}
-
-#header h3 a:hover{
-	color: #ff0fff;
-	text-decoration: underline;
-}
-
-#header h2{
-	margin: 0;
-	padding: 8px 0 5px 20px;
-	font-weight:800;
-	font-family:  arial, verdana, sans-serif;
-	color: #ff0fff;
-	font-size: 100%;
-}
-
-h2# sectiontitle{
-	font-size:140%;
-	font-weight: 100;
-	padding: 6px 6px 6px 10px;
-	margin: 1px 15px 10px 15px;
-	background: #404040;
-	color: #fff;
+	color: #1B2024;
 }
 
 /* Menu */
 
 #menu {
-	float: left;
-	background-color: #BBBBBB;
-	width: 100%;
+	float: right;
+	width: 650px;
+	height: 80px;
 }
 
 #menu ul {
-	float: left;
+	float: right;
 	margin: 0;
-	padding: 2px 0px 2px 0px;
+	padding: 40px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
-	margin-left: 0px;
 }
 
 #menu li {
@@ -135,7 +143,7 @@ h2# sectiontitle{
 	padding: 5px 20px 5px 20px;
 	text-decoration: none;
 	text-align: center;
-	text-transform: lowercase;
+	text-transform: uppercase;
 	font-family: 'Oswald', sans-serif;
 	font-size: 18px;
 	font-weight: 300;
@@ -149,87 +157,9 @@ h2# sectiontitle{
 	color: #FFFFFF;
 }
 
-
-#footer {
-	width: 70%;
-	margin-left: 15%;
-}
-
-
-#footer #footer-left {
-	background-color: #404040;
-	float: left;
-	width: 69%;
-	border: 1px solid blue;
-}
-
-
-#footer #footer-right {
-	float: right;
-	width: 29%;
-	background-color: #404040;
-	border: 1px solid blue;
-	display: inherit;
-}
-
-#footer #footer-right ul {
-	padding-left: 20px;
-	background-color: #404040;
-	border: 1px solid blue;
-	display: inherit;
-}
-
-#footer-right ul li h3 {
-	padding-left: 10px;
-	color: #ffffff;
-	padding-bottom: 1px;
-    border-bottom: 1px solid #016597;
-    font-weight: solid;
-    margin-top: 0;
-
-}
-
-#footer-right ul li ul {
-	padding-left: 0px;
-	padding-top: 0px;
-	margin-top: 0px;
-	font-size: 100%;
-}
-
-#footer-right ul li ul li {
-	background: url("images/bullet.gif") no-repeat scroll 4px 8px transparent;
-    border-bottom: 1px solid #555555;
-    display: block;
-    color: #016597;
-    font-weight: bold;
-    margin-bottom: 10px;
-    
-}
-
-
-#bottom {
-	width: 70%;
-	margin-left: 15%;
-	background-color: #404040;
-	text-align: center;
-	font-size: 60%;
-	color: #016597;
-}
-
-#bottom a {
-	text-decoration: none;
-	color: #000000;
-}
-
-#bottom a:hover {
-	text-decoration: none;
-	color: #f00000;
-}
-
-
 /* Page */
 
-/*#page-wrapper {
+#page-wrapper {
 	overflow: hidden;
 	background: #F1F2E9;
 }
@@ -240,11 +170,11 @@ h2# sectiontitle{
 	margin: 0px auto;
 	padding: 50px 0px;
 	color: #8F8F8F;
-}*/
+}
 
 /** CONTENT */
 
-/*#content {
+#content {
 	float: right;
 	width: 660px;
 	padding: 0px 0px 0px 0px;
@@ -263,12 +193,12 @@ h2# sectiontitle{
 	font-family: 'Oswald', sans-serif;
 	font-size: 18px;
 	color: #81AFC5;
-}*/
+}
 
 
 /** SIDEBAR */
 
-/*#sidebar {
+#sidebar {
 	float: left;
 	width: 290px;
 	padding: 0px 0px 20px 0px;
@@ -278,11 +208,11 @@ h2# sectiontitle{
 	padding: 0px 0px 30px 0px;
 	letter-spacing: -1px;
 	font-size: 2em;
-}*/
+}
 
 /* Footer */
 
-/*#footer {
+#footer {
 	height: 100px;
 	margin: 0 auto;
 	padding: 50px 0px 15px 0px;
@@ -301,11 +231,11 @@ h2# sectiontitle{
 
 #footer a {
 	color: #4D565E;
-}*/
+}
 
 /* Three Column Footer Content */
 
-/*#footer-wrapper {
+#footer-wrapper {
 	background: #FFFFFF;
 }
 
@@ -332,31 +262,21 @@ h2# sectiontitle{
 	color: #5C5539;
 }
 
+
 #footer-content #fbox1 {
 	float: left;
-	width: 760px;
-	
+	width: 320px;
+	margin-right: 20px;
 }
 
 #footer-content #fbox2 {
 	float: right;
-	width: 200px;
-	margin-left: 20px;
-	border-left: thick double #ff0000;
+	width: 640px;
 }
-
-#footer-content #fbox2 div {
-	margin-left: 20px;
-}
-
-#footer-content #fbox2 ul li {
-	list-style:none;
-	border: 1px solid #016597;
-}*/
 
 /* Banner Style */
 
-/*#banner-wrapper {
+#banner-wrapper {
 	overflow: hidden;
 	height: 345px;
 	padding: 40px 0px;
@@ -367,21 +287,11 @@ h2# sectiontitle{
 	overflow: hidden;
 	width: 1000px;
 	margin: 0px auto;
-}*/
-
-/*  */
-/*.yuan_style {
-	display: inline-block;
-	margin-top: 10px;
-	padding: 7px 30px;
-	background: #CDCDCD;
-	border-radius: 5px;
-}*/
-
+}
 
 /* Button Style */
 
-/*.button-style {
+.button-style {
 	display: inline-block;
 	margin-top: 30px;
 	padding: 7px 30px;
@@ -397,11 +307,11 @@ h2# sectiontitle{
 	font-weight: 300;
 	font-size: 16px;
 	color: #FFFFFF;
-}*/
+}
 
 /* List Style 1 */
 
-/*ul.style1 {
+ul.style1 {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
@@ -425,11 +335,11 @@ ul.style1 a:hover {
 ul.style1 .first {
 	padding-top: 0px;
 	border-top: none;
-}*/
+}
 
 /* List Style 2 */
 
-/*ul.style2 {
+ul.style2 {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
@@ -443,11 +353,11 @@ ul.style2 li {
 ul.style2 .first {
 	padding-top: 0px;
 	border-top: none;
-}*/
+}
 
 /* List style 3 */
 
-/*ul.style3 {
+ul.style3 {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
@@ -479,4 +389,3 @@ ul.style3 .first {
 	padding-top: 0px;
 	background: none;
 }
-*/
