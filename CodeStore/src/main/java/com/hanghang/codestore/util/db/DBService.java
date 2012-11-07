@@ -1,6 +1,7 @@
 package com.hanghang.codestore.util.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.sql.DataSource;
 import org.apache.commons.dbutils.BasicRowProcessor;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.RowProcessor;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
@@ -20,7 +22,6 @@ import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.hanghang.codestore.util.db.handler.EmptyHandler;
-import com.hanghang.codestore.util.db.processor.OracleProcessor;
 
 /**
  * 数据库操作的封装
@@ -38,17 +39,16 @@ public class DBService {
 	/**
 	 * 数据库连接源
 	 */
-	private DataSource ds;
+	private DataSource ds = DataSourceFactory.getDataSource();
 	
-	public static final RowProcessor defaultBeanConvert = new BasicRowProcessor(new OracleProcessor());
+	public static final RowProcessor defaultBeanConvert = new BasicRowProcessor();
 
 	/**
 	 * 根据数据库名构造一个自动提交事务的数据库操作封装类。
 	 * @throws SQLException
 	 */
 	public DBService() throws SQLException {
-		ds = DataSourceFactory.getDataSource();
-		executor = new QueryRunner(ds);
+		this(true);
 	}
 	
 	/**
@@ -57,22 +57,12 @@ public class DBService {
 	 * @throws SQLException
 	 */
 	public DBService(boolean autoCommit) throws SQLException {
-		ds = DataSourceFactory.getDataSource();
-		conn = ds.getConnection();
-		conn.setAutoCommit(false);
-		executor = new QueryRunner();
-	}
-
-	/**
-	 * 根据SQL语句查询数据库，获得元素为String[]的列表。
-	 * 
-	 * @param sql
-	 *            SQL查询语句
-	 * @return List(String[])元素为String[]的列表
-	 * @throws SQLException
-	 */
-	public List<Object[]> getList(String sql) throws SQLException {
-		return executor.query(sql, new ArrayListHandler());
+		if(autoCommit){
+			executor = new QueryRunner(ds);
+		}else{
+			this.conn = ds.getConnection();
+			this.conn.setAutoCommit(false);
+		}
 	}
 
 	/**
@@ -85,9 +75,25 @@ public class DBService {
 	 * @return List(String[])元素为String数组的列表
 	 * @throws SQLException
 	 */
-	public List<Object[]> getList(String sql, Object... params) throws SQLException {
-		return executor.query(sql, new ArrayListHandler(), params);
-	}
+//	public <T> T getList(String sql, Object... params) throws SQLException {
+//		executor.query(sql, new ArrayListHandler(), params);
+//		return getList(sql, null, params);
+////		return executor.query(sql, new ArrayListHandler(), params);
+//	}
+	
+	/**
+	 * 利用预编译SQL语句查询数据库，获得元素为String[]的列表。
+	 * 
+	 * @param sql
+	 *            预编译SQL语句
+	 * @param params
+	 *            预编译SQL参数，可为null。
+	 * @return List(String[])元素为String数组的列表
+	 * @throws SQLException
+	 */
+//	public <T> List<T> getList(String sql, ResultSetHandler<T> handler, Object... params) throws SQLException {
+//		return executor.query(sql, handler, params);
+//	}
 
 	/**
 	 * 根据SQL语句查询的一条结果集填充Bean的属性
@@ -158,11 +164,7 @@ public class DBService {
 	 * @throws SQLException
 	 */
 	public int update(String sql, Object... params) throws SQLException {
-		try {
-			return executor.update(conn, sql, params);
-		} finally {
-			close();
-		}
+		return executeUpdate(this.conn, sql, params);
 	}
 
 	/**
@@ -245,13 +247,27 @@ public class DBService {
 		return stmt.execute(sql);
 	}
 
+	private int executeUpdate(Connection conn, String sql, Object... params) throws SQLException{
+		int result;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			for (int i = 0; i < params.length; i++) {
+				pstmt.setObject(i+1, params[i]);
+			}
+			result = pstmt.executeUpdate();
+		} finally {
+			close();
+		}
+		return result;
+	}
+
 	/**
 	 * 提交数据库更新
 	 * 
 	 * @throws SQLException
 	 */
 	public void commit() throws SQLException {
-		DbUtils.commitAndCloseQuietly(conn);
+		conn.commit();
 	}
 
 	/**

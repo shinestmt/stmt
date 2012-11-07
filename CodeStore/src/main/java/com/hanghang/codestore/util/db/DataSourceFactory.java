@@ -6,8 +6,6 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
-
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
