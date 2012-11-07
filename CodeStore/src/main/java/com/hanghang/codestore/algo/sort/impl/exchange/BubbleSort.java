@@ -7,8 +7,6 @@ import com.hanghang.codestore.algo.sort.Sortable;
  */
 public class BubbleSort implements Sortable {
 
-	int count = 0;
-	
 	@Override
 	public int[] sort(int[] array) {
 		int index = array.length;
@@ -16,7 +14,6 @@ public class BubbleSort implements Sortable {
 		while (index >= 0) {
 			for (int i = 0; i <= index-2; i++) {
 				if(array[i] > array[i+1]){
-					count++;
 					int tmp = array[i];
 					array[i] = array[i+1];
 					array[i+1] = tmp;
@@ -24,7 +21,6 @@ public class BubbleSort implements Sortable {
 			}
 			index--;
 		}
-		System.out.println(count);
 		return array;
 	}
 

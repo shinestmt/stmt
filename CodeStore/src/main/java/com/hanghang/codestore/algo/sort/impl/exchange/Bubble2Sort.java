@@ -14,12 +14,9 @@ public class Bubble2Sort implements Sortable {
 		int index = array.length;
 		boolean isExchange = true;
 		
-		int count = 0;
-		
 		while (index >= 0 && isExchange) {
 			isExchange = false;
 			for (int i = 0; i <= index-2; i++) {
-				count++;
 				if(array[i] > array[i+1]){
 					int tmp = array[i];
 					array[i] = array[i+1];
@@ -29,7 +26,6 @@ public class Bubble2Sort implements Sortable {
 			}
 			index--;
 		}
-		System.out.println(count);
 		return array;
 	}
 

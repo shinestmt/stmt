@@ -8,8 +8,6 @@ import com.hanghang.codestore.algo.sort.Sortable;
  */
 public class Bubble3Sort implements Sortable {
 
-	int count = 0;
-	
 	@Override
 	public int[] sort(int[] arr) {
 
@@ -19,7 +17,6 @@ public class Bubble3Sort implements Sortable {
 		while (high > low) {
 			for (j = low; j < high; j++) {
 				if (arr[j] > arr[j + 1]) {
-					count++;
 					temp = arr[j];
 					arr[j] = arr[j + 1];
 					arr[j + 1] = temp;
@@ -29,7 +26,6 @@ public class Bubble3Sort implements Sortable {
 			high = index;
 			for (j = high; j > low; j--) {
 				if (arr[j] > arr[j - 1]) {
-					count++;
 					temp = arr[j];
 					arr[j] = arr[j - 1];
 					arr[j - 1] = temp;
@@ -38,7 +34,6 @@ public class Bubble3Sort implements Sortable {
 			}
 			low = index;
 		}
-		System.out.println(count);
 		return arr;
 	}
 
