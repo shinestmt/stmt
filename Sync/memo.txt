@@ -11,3 +11,25 @@ H2
 
 
 2012年11月14号《Oracle系列讲座之五》，讲解者：龙抬头Y神。讲课方式，语音，YY频道号：85536471（听课前，请更新到YY5.0）。
+
+
+
+
+|      DW     | implement |      BISS     |                            |
+|-------------|-----------|---------------|----------------------------|
+| DW_collect  | Java IO   | Kettle        | ETL-Extraction             |
+| DW_pretreat |           | Kettle        | ETL-Transformation/Loading |
+| DW_count    |           | Procedure     |                            |
+| DW_stat     |           | Cognos-Report | Report                     |
+| DW_stat     |           | JSP           |                            |
+
+
+
+|                    |     DW_stat     |    DW_stat implement    |       BISS      | BISS implement |
+|--------------------|-----------------|-------------------------|-----------------|----------------|
+| ETL-Extraction     | (Task)          | Shell + Database output | Kettle          |                |
+| ETL-Loading        | DW_collect      | Java Task + IO          | Kettle          |                |
+| ETL-Transformation | DW_pretreat     | Java Task + Procedure   | Procedure       |                |
+| Report             | Count Interface | Java Task + Procedure   | Cognos          |                |
+| Show               | Web Application | HTML <table>            | Web Application | HTML <iframe>  |
+|                    |                 |                         |                 |                |
