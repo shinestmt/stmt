@@ -34,3 +34,42 @@ H2
 | Report             | Count Interface | Java Task + Procedure   | Cognos          |                |
 | Show               | Web Application | HTML <table>            | Web Application | HTML <iframe>  |
 
+
+
+
+bcdedit /create {ntldr} /d "Windows XP"
+bcdedit /set {ntldr} device partition=C:
+bcdedit /set {ntldr} path \boota
+
+-----------------------------------------------------------------------------------------------------
+
+bcdedit /create {ntldr} /d "Windows 2003" （创建一个基于NTLDR的启动项，菜单里显示为“Windows 2003”）
+bcdedit /set {ntldr} device partition=C:
+bcdedit /set {ntldr} path \ntldr
+bcdedit /displayorder {ntldr} /addfirst（把刚才创建的这个条目显示在启动菜单的第一位）
+bcdedit /toolsdisplayorder {memdiag} /addfirst （在启动菜单里添加内存诊断工具）
+
+-----------------------------------------------------------------------------------------------------
+
+1. 添加grub启动菜单
+a.利用ntldr
+用bcdedit添加或者自己写个boot.ini添加都可以
+[boot loader]
+[operating systems]
+c:\grldr.mbr="grub4dos"
+然后将grldr和grldr.mbr复制到根目录
+b.用bcdedit
+bcdedit /create /d "grub" /application bootsector
+bcdedit /set {id} device partition=c:
+bcdedit /set {id} path \grldr.mbr
+bcdedit /displayorder {id} /addlast
+
+2.添加XP启动菜单
+Bcdedit /create {ntldr} /d "Windows XP Professional" 
+Bcdedit /set {ntldr} device partition=c: 
+Bcdedit /set {ntldr} path \ntldr 
+Bcdedit /displayorder {ntldr} /addlast
+注意，上面的{id}是第一条命令得到的{ID},你可以通过
+bcdedit /create /d "grub" /application bootsector > c:\grub.txt
+把第一条的内容输出到c:\grub.txt文件，在拷贝到下面的{id}对应位置。很简单，这样不用手动输入了。
+到这里，启动菜单就添加成功了。
