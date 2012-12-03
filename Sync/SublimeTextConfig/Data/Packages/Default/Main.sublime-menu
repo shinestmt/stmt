@@ -299,7 +299,7 @@
         ]
     },
     {
-        "caption": "选择(S)",
+        "caption": "选项(S)",
         "mnemonic": "S",
         "id": "selection",
         "children":
@@ -802,17 +802,11 @@
             { "command": "purchase_license", "caption": "购买许可证" },
             { "command": "show_license_window", "caption": "输入许可证" },
             { "caption": "-" },
-            { "command": "show_about_window", "caption": "关于 Sublime Text 2 (A)", "mnemonic": "A" }
+            { "command": "show_about_window", "caption": "关于 Sublime Text 2 (A)", "mnemonic": "A" },
+	    { "caption": "-" },
+            { "command": "open_file", "args": {"file": "${packages}/wkang956/wkang956"}, "caption": "wkang956 提醒" },
+            { "command": "open_url", "args": {"url": "http://wkang956.web-192.com/word/"}, "caption": "wkang956 博客" }
         ]
-    },
-    {
-        "caption": "wkang956",
-        "mnemonic": "w",
-        "id": "wkang956",
-        "children":
-        [
-			{ "command": "open_file", "args": {"file": "${packages}/wkang956/wkang956"}, "caption": "wkang956 提醒" },
-			{ "command": "open_url", "args": {"url": "http://wkang956.web-192.com/word/"}, "caption": "wkang956 博客" }
-        ]
+
     }
 ]
