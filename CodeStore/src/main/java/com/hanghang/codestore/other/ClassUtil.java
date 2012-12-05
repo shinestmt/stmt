@@ -6,24 +6,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hanghang.codestore.loader.Taskable;
-
-
 public class ClassUtil {
 	public static void main(String[] args) {
 		try {
 			System.out.println("接口实现类：");
-			for (Class<?> c : getAllAssignedClass(Taskable.class)) {
-				System.out.println(c.getName());
-			}
+//			for (Class<?> c : getAllAssignedClass(Taskable.class)) {
+//				System.out.println(c.getName());
+//			}
 //			System.out.println("子类：");
 //			for (Class<?> c : getAllAssignedClass(Man.class)) {
 //				System.out.println(c.getName());
 //			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
