@@ -1,14 +1,15 @@
 package com.hanghang.codestore.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Log {
 	
-	private static Logger log = Logger.getLogger("log");
+	private static Logger log = LoggerFactory.getLogger("log");
 	
-	private static Logger err = Logger.getLogger("err");
+	private static Logger err = LoggerFactory.getLogger("err");
 	
-	private static Logger prt = Logger.getLogger("prt");
+	private static Logger prt = LoggerFactory.getLogger("prt");
 	
 	/**
 	 * 打印info信息到控制台
