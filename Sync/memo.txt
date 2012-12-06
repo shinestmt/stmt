@@ -11,6 +11,8 @@ H2
 2012年11月14号《Oracle系列讲座之五》，讲解者：龙抬头Y神。讲课方式，语音，YY频道号：85536471（听课前，请更新到YY5.0）。
 2012年11月28号《BIEE入门》，讲解者：叶紫（美女哦）。讲课方式，语音，YY频道号：85536471。
 2012年12月5号《ODI简介》，讲解者：Aimee阳光。雨（美女哦）。讲课方式，语音，YY频道号：85536471
+2012年12月16日晚上8点，天善智能。	YY：49943158	http://blog.tianshansoft.com/archives/654.html
+
 
 
 |                    |     DW_stat     |    DW_stat implement    |       BISS      | BISS implement |
