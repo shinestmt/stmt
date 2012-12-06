@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.hanghang.codestore.loader.Taskable;
-import com.hanghang.codestore.loader.common.TaskClassLoader;
 
 public class Suanfa {
 
