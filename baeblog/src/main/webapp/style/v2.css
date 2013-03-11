@@ -7,60 +7,6 @@ body {
     padding: 0;
 }
 
-/*h1, h2, h3 {
-	margin: 0;
-	padding: 0;
-	font-family: 'Abel', sans-serif;
-	font-weight: 200;
-	color: #222222;
-}
-
-p, ol, ul {
-	margin: 0px;
-	padding: 0px;
-}
-
-p, ol {
-	line-height: 180%;
-}
-
-strong {
-}
-
-a {
-	color: #5C5539;
-}
-
-a:hover {
-	text-decoration: none;
-}
-
-a img {
-	border: none;
-}
-
-img.border {
-}
-
-img.alignleft {
-	float: left;
-}
-
-img.alignright {
-	float: right;
-}
-
-img.aligncenter {
-	margin: 0px auto;
-}
-
-hr {
-	display: none;
-}
-*/
-
-/*  */
-
 .widget {
 	border: 1px solid #016597;
 }
@@ -226,35 +172,6 @@ h2# sectiontitle{
 	/*border: 1px solid blue;*/
 	display: inherit;
 }
-
-/*#footer-right ul li h3 {
-	padding-left: 10px;
-	color: #ffffff;
-	padding-bottom: 1px;
-    border-bottom: 1px solid #016597;
-    font-weight: solid;
-    margin-top: 0;
-
-}
-
-#footer-right ul li ul {
-	padding-left: 0px;
-	padding-top: 0px;
-	margin-top: 0px;
-	font-size: 100%;
-}
-
-#footer-right ul li ul li {
-	background: url("images/bullet.gif") no-repeat scroll 4px 8px transparent;
-    border-bottom: 1px solid #555555;
-    display: block;
-    color: #016597;
-    font-weight: bold;
-    margin-bottom: 10px;
-    
-}
-*/
-
 
 #bottom {
 	width: 70%;

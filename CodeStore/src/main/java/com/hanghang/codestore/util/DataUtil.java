@@ -6,23 +6,80 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.MultiHashMap;
+import junit.framework.TestCase;
+
 import org.apache.commons.collections.MultiMap;
+import org.apache.commons.collections.map.MultiValueMap;
 import org.nutz.json.Json;
 
-import com.hanghang.codestore.util.print.Printer;
-
-public class DataUtil {
-	
-	public static void testname() throws Exception {
-		MultiMap map = new MultiHashMap();
-		map.put("a", new String[]{"123", "1"});
-		map.put("a", new String[]{"456", "4"});
-		System.out.println(Json.toJson(map.get("a")));
+public class DataUtil extends TestCase {
 		
-		
-		
+	/**
+	 * 将数组第一列作为Key, 第二列至末尾的数组作为Value
+	 * @param arrayList
+	 * @return MultiMap(String, List<String[]>)
+	 */
+	public static Map<String, List<String[]>> castStringListMap(List<String[]> arrayList){
+		MultiMap map = new MultiValueMap();
+		for (String[] array : arrayList) {
+			map.put(array[0], Arrays.copyOfRange(array, 1, array.length));
+		}
+		return map;
 	}
+	
+	/**
+	 * 
+	 * @param arrayList
+	 * @param transData
+	 * @return
+	 */
+	public static List<String[]> transArrayList(List<String[]> arrayList, String... transData) {
+		List<String[]> rsList = new ArrayList<String[]>();
+		if(arrayList == null || arrayList.isEmpty()){
+			return rsList;
+		}
+		if(transData == null || transData.length == 0){
+			return rsList;
+		}
+		
+		//得到Map(String, List<String[]>)
+		Map<String, List<String[]>> strListMap = castStringListMap(arrayList);
+		Map<String, Map<String, List<String[]>>> strListMapMap = new HashMap<String, Map<String,List<String[]>>>();
+		for (Map.Entry<String, List<String[]>> entry : strListMap.entrySet()) {
+			strListMapMap.put(entry.getKey(), castStringListMap(entry.getValue()));
+		}
+		
+		/*
+		 * 计算目标子项的长度
+		 */
+		int srcItemLen = arrayList.get(0).length; //源列表项的长度
+		int subItemLen = srcItemLen - 2; //分组后子项的长度: 源列表长度剔除前两列
+		int destItemLen = subItemLen * transData.length + 1; //目标项长度: 分组后子项的长度, 乘以分组项数目
+		
+		/**
+		 * 组合旋转结果
+		 */
+		String[] transItem = null;
+		Map<String, List<String[]>> itemMap = null;
+		for (Map.Entry<String, Map<String, List<String[]>>> entry : strListMapMap.entrySet()) {
+			transItem = new String[destItemLen];
+			transItem[0] = entry.getKey();
+			
+			itemMap = entry.getValue();
+			
+			for (int i = 0; i < transData.length; i++) {
+				if(itemMap.get(transData[i]) == null || itemMap.get(transData[i]).isEmpty()){
+					continue;
+				}
+				System.arraycopy(itemMap.get(transData[i]).get(0), 0, transItem, i*subItemLen+1, subItemLen);
+				
+			}
+			rsList.add(transItem);
+		}
+		return rsList;
+
+	}
+	
 	
 	/**
 	 *
@@ -79,7 +136,7 @@ public class DataUtil {
 	}
 	
 	private static Map<String, List<String[]>> toStringListMap(List<String[]> dataList) throws Exception{
-		MultiMap rsMap = new MultiHashMap();
+		MultiMap rsMap = new MultiValueMap();
 		for (String[] item : dataList) {
 			rsMap.put(item[0], Arrays.copyOfRange(item, 1, item.length));
 		}
@@ -103,8 +160,19 @@ public class DataUtil {
 				stringListMap.put(item[0], arrayList);
 			}
 		}
-		System.out.println(Json.toJson(stringListMap));
 		return stringListMap;
+	}
+	
+	public static void testTrans(List<String[]> arrayList) throws Exception {
+		for (int i = 0; i < 100000; i++) {
+			transArrayList(arrayList, "收入", "支出", "人数");
+		}
+	}
+	
+	public static void testExtend(List<String[]> arrayList) throws Exception {
+		for (int i = 0; i < 100000; i++) {
+			extendList(arrayList, "收入", "支出", "人数");
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -117,12 +185,20 @@ public class DataUtil {
 		dataList.add(new String[]{"湖南", "人数", "150", "160"});
 		
 		try {
-			List<String[]> rsList = extendList(dataList, "收入", "支出", "人数");
-			Printer.print(rsList);
+			long start, end;
 			
-			String[] array = rsList.get(0);
-			String[] newArray = Arrays.copyOfRange(array, 1, array.length-2);
-			System.out.println(Arrays.toString(newArray));
+			
+			
+			start = System.currentTimeMillis();
+			testTrans(dataList);
+			end = System.currentTimeMillis();
+			System.out.println(end - start);
+			
+			
+			start = System.currentTimeMillis();
+			testExtend(dataList);
+			end = System.currentTimeMillis();
+			System.out.println(end - start);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
