@@ -72,7 +72,7 @@ public class DBService
         return null;
     }
 
-    public List fetchBeanList(String sql, Handler handler, Object... params) throws SQLException {
+    public List<T> fetchList(String sql, Handler handler, Object... params) throws SQLException {
         //TODO 
         return null;
     }
