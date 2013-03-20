@@ -12,6 +12,9 @@ argv[0]  当前文件路径
 
 """
 
+test = 'ttttt'
+
 import sys
 print sys.argv
 print sys.version_info
+# print test
