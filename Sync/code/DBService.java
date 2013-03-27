@@ -45,6 +45,15 @@ public class DBService
     }
 
     /**
+     * 设置数据库是否自动提交
+     * @param autoCommit true，自动提交。
+     * @throws SQLException
+     */
+    public void setAutoCommit(boolean autoCommit) throws SQLException {
+        conn.setAutoCommit(autoCommit);
+    }
+
+    /**
      * 获得数据库分页信息，只有先调用了<code>getPageList(...)</code>方法之后，
      * 调用此方法才会返回一个分页信息实例，否则返回null。
      * @return 数据库分页信息 or null。
@@ -240,56 +249,24 @@ public class DBService
      * @return 返回更新的总行数
      * @throws SQLException
      */
-    public int updates(String sql, List<Object[]> paramList) throws SQLException {
+    public int[] updates(String sql, List<Object[]> paramList) throws SQLException {
+        if (paramList != null) {
+            return null;
+        }
         PreparedStatement stmt = null;
         try {
             stmt = conn.prepareStatement(sql);
-            int rows = 0;
-            if (paramList != null) {
-                for (int i = 0, ii = paramList.size(); i < ii; i++) {
-                    Object[] objs = paramList.get(i);
-                    for (int j = 0; j < objs.length; j++) {
-                        stmt.setObject(j + 1, objs[j]);
-                    }
-                    rows += stmt.executeUpdate();
+            int ii = paramList.size();
+            int[] rows = new int[ii];
+            for (int i = 0; i < ii; i++) {
+                Object[] objs = paramList.get(i);
+                for (int j = 0; j < objs.length; j++) {
+                    stmt.setObject(j + 1, objs[j]);
                 }
+                rows[i] = stmt.executeUpdate();
             }
             return rows;
         } finally {
-            closeStatement(stmt);
-        }
-    }
-
-    /**
-     * 采用预编译形式执行一次给定的 INSERT、UPDATE或DELETE的SQL语句组，
-     * SQL 语句组对应同一组参数。
-     * @param sqls 预编译SQL语句组
-     * @param params SQL 参数，可为null。
-     * @return 返回SQL语句组更新的行数组
-     */
-    public int[] update(String[] sqls, Object[] params) throws SQLException {
-        int[] updatedRows = new int[sqls.length];
-        for (int i = 0; i < sqls.length; i++) {
-            updatedRows[i] = update(sqls[i], params);
-        }
-        return updatedRows;
-    }
-
-    /**
-     * 是否查询到数据
-     * @param sql 查询SQL语句
-     * @return boolean 查询的结果集中有数据则返回true，否则返回false。
-     * @throws SQLException
-     */
-    public boolean hasData(String sql) throws SQLException {
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            return rs.next();
-        } finally {
-            closeResultSet(rs);
             closeStatement(stmt);
         }
     }
@@ -482,15 +459,6 @@ public class DBService
     }
 
     /**
-     * 设置数据库是否自动提交
-     * @param autoCommit true，自动提交。
-     * @throws SQLException
-     */
-    public void setAutoCommit(boolean autoCommit) throws SQLException {
-        conn.setAutoCommit(autoCommit);
-    }
-
-    /**
      * 提交数据库更新
      * @throws SQLException
      */
@@ -527,6 +495,7 @@ public class DBService
 
 /**
  * SQL结果集数据区域
+ * 包含起始和结束
  */
 final class ResultRange {
     public static final int END_COL = -1; //结束列标识

@@ -12,4 +12,3 @@ print len(unicode(a, "UTF-8"))
 aa = 'aaaaaaaaaaaa'
 print "Table Editor: set syntax to '{0}' '{1}'".format(aa, aa)
 
-os.pause()
