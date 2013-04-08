@@ -1,0 +1,14 @@
+在jakara上下载了开源commons-math-1.1，发现是一个非常好的东西.特别是用来进行科学计算非常有好处！下载地址是：http://jakarta.apache.org/commons/math/
+Math 是一个轻量的，自包含的数学和统计组件，解决了许多非常通用但没有及时出现在Java标准语言中的实践问题.
+我们可以参考其主页上的用户指导（User Guide ）.或者直接研究其ＡＰＩ，发现在commons-math中有以下几个包：
+
+1.org.apache.commons.math                   Common classes used throughout the commons-math library.
+2.org.apache.commons.math.analysis          Implementations of common numerical analysis procedures, including root finding and function interpolation.主要解决一些数学通常的分析方法，包括求方程的根，其中有对分算法，牛顿算法等等.以及函数的改写.
+3.org.apache.commons.math.complex           Complex number type and implementations of complex transcendental functions.主要用来解决复数的计算.
+4.org.apache.commons.math.distribution      Implementations of common discrete and continuous distributions.主要用来解决连续分布和不连续分布的计算.
+5.org.apache.commons.math.fraction          Fraction number type and fraction number formatting.主要讨论分数的格式和类型.
+6.org.apache.commons.math.linear            Linear algebra support.线性代数中矩阵和行列式的算法.
+7.org.apache.commons.math.random            Random number and random data generators.随机数算法
+8.org.apache.commons.math.special           Implementations of special functions such as Beta and Gamma.一些特别的函数算法.
+9.org.apache.commons.math.stat              Data storage, manipulation and summary routines.
+10.org.apache.commons.math.util             Convenience routines and common data structures used throughout the commons-math library.
