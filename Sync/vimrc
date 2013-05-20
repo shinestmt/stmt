@@ -1,0 +1,14 @@
+" base
+set number
+set ruler
+set showmatch
+set incsearch
+
+" set tab
+set tabstop=4
+
+" set view
+set listchars=tab:>-,trail:-
+set list
+
+set nocompatible
